@@ -205,6 +205,20 @@ li {
   background: #141414;
 }
 
+.player-inputs .input-dark {
+  color: #dadada;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.btn-light {
+  color: #000;
+  background: #aaa8a8;
+}
+
+.btn-light:disabled {
+  background: #292929;
+  color: #4a4a4a;
+}
 .btn-dark:disabled {
   background: #f2f2f2;
   color: #c7c7c7;
@@ -240,4 +254,23 @@ li {
   color: #ff1616;
   font-size: 20px;
   margin: 50px 0px;
+}
+
+.dark {
+  color: #dadada;
+  background: #1c2022;
+  min-height: 100%;
+}
+
+.bg-dark {
+  background: rgb(36, 40, 42);
+  border-radius: 3px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.nav li {
+  margin-right: 10px;
 }

@@ -12,6 +12,31 @@ import {
 import Card from './Card';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
+import Tooltip from './Tooltip';
+import queryString from 'query-string';
+import { Link } from 'react-router-dom';
+
+const styles = {
+  container: {
+    position: 'relative',
+    display: 'flex'
+  },
+  tooltip: {
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '160px',
+    bottom: '100%',
+    left: '50%',
+    marginLeft: '-80px',
+    borderRadius: '3px',
+    backgroundColor: 'hsla(0, 0%, 20%, 0.9)',
+    padding: '7px',
+    marginBottom: '5px',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '14px'
+  }
+};
 
 function ProfileList({ profile }) {
   return (
@@ -22,14 +47,18 @@ function ProfileList({ profile }) {
       </li>
       {profile.location && (
         <li>
-          <FaCompass color='rgb(144, 115, 255)' size={22} />
-          {profile.location}
+          <Tooltip text="User's location">
+            <FaCompass color='rgb(144, 115, 255)' size={22} />
+            {profile.location}
+          </Tooltip>
         </li>
       )}
       {profile.company && (
         <li>
-          <FaBriefcase color='#795548' size={22} />
-          {profile.company}
+          <Tooltip text="User's company">
+            <FaBriefcase color='#795548' size={22} />
+            {profile.company}
+          </Tooltip>
         </li>
       )}
       <li>
@@ -60,7 +89,9 @@ export default class Results extends React.Component {
     };
   }
   componentDidMount() {
-    const { playerOne, playerTwo, onReset } = this.props;
+    const { playerOne, playerTwo } = queryString.parse(
+      this.props.location.search
+    );
 
     battle([playerOne, playerTwo])
       .then(players => {
@@ -111,16 +142,10 @@ export default class Results extends React.Component {
             <ProfileList profile={loser.profile} />
           </Card>
         </div>
-        <button onClick={this.props.onReset} className='btn btn-dark btn-space'>
+        <Link to='/battle' className='btn btn-dark btn-space'>
           Reset
-        </button>
+        </Link>
       </React.Fragment>
     );
   }
 }
-
-Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
-};
