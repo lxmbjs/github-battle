@@ -8,6 +8,7 @@ import {
   FaExclamationTriangle
 } from 'react-icons/fa';
 import Card from './Card';
+import Loading from './Loading';
 function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
 
@@ -18,7 +19,8 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
           <button
             className='btn-clear nav-link'
             style={language === selected ? { color: 'rgb(187, 46, 31)' } : null}
-            onClick={() => onUpdateLanguage(language)}>
+            onClick={() => onUpdateLanguage(language)}
+          >
             {language}
           </button>
         </li>
@@ -52,7 +54,8 @@ function ReposGrid({ repos }) {
               header={`#${index + 1}`}
               avatar={avatar_url}
               href={html_url}
-              name={login}>
+              name={login}
+            >
               <ul className='card-list'>
                 <li>
                   <FaUser color='rgb(255, 191, 116)' size={22} />
@@ -141,7 +144,7 @@ export default class Popular extends React.Component {
           selected={selectedLanguage}
           onUpdateLanguage={this.updateLanguage}
         />
-        {this.isLoading() && <p>LOADING</p>}
+        {this.isLoading() && <Loading text='Fetching Repos' />}
         {error && <ps className='center-text error'>{error}</ps>}
         {repos[selectedLanguage] && (
           <ReposGrid repos={repos[selectedLanguage]} />

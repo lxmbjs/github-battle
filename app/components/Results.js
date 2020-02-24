@@ -11,6 +11,7 @@ import {
 
 import Card from './Card';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 function ProfileList({ profile }) {
   return (
@@ -81,7 +82,7 @@ export default class Results extends React.Component {
     const { winner, loser, error, loading } = this.state;
 
     if (loading === true) {
-      return <p>Loading!!!</p>;
+      return <Loading />;
     }
 
     if (error) {
@@ -95,7 +96,8 @@ export default class Results extends React.Component {
             subheader={`Score: ${winner.score.toLocaleString()}`}
             avatar={winner.profile.avatar_url}
             href={winner.profile.html_url}
-            name={winner.profile.login}>
+            name={winner.profile.login}
+          >
             <ProfileList profile={winner.profile} />
           </Card>
 
@@ -104,7 +106,8 @@ export default class Results extends React.Component {
             subheader={`Score: ${loser.score.toLocaleString()}`}
             avatar={loser.profile.avatar_url}
             name={loser.profile.login}
-            href={loser.profile.html_url}>
+            href={loser.profile.html_url}
+          >
             <ProfileList profile={loser.profile} />
           </Card>
         </div>
