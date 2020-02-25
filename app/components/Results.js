@@ -78,16 +78,12 @@ ProfileList.propTypes = {
 };
 
 export default class Results extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      loading: true
-    };
-  }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    loading: true
+  };
   componentDidMount() {
     const { playerOne, playerTwo } = queryString.parse(
       this.props.location.search
@@ -127,8 +123,7 @@ export default class Results extends React.Component {
             subheader={`Score: ${winner.score.toLocaleString()}`}
             avatar={winner.profile.avatar_url}
             href={winner.profile.html_url}
-            name={winner.profile.login}
-          >
+            name={winner.profile.login}>
             <ProfileList profile={winner.profile} />
           </Card>
 
@@ -137,8 +132,7 @@ export default class Results extends React.Component {
             subheader={`Score: ${loser.score.toLocaleString()}`}
             avatar={loser.profile.avatar_url}
             name={loser.profile.login}
-            href={loser.profile.html_url}
-          >
+            href={loser.profile.html_url}>
             <ProfileList profile={loser.profile} />
           </Card>
         </div>

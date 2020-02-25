@@ -21,8 +21,7 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
           <button
             className='btn-clear nav-link'
             style={language === selected ? { color: 'rgb(187, 46, 31)' } : null}
-            onClick={() => onUpdateLanguage(language)}
-          >
+            onClick={() => onUpdateLanguage(language)}>
             {language}
           </button>
         </li>
@@ -56,8 +55,7 @@ function ReposGrid({ repos }) {
               header={`#${index + 1}`}
               avatar={avatar_url}
               href={html_url}
-              name={login}
-            >
+              name={login}>
               <ul className='card-list'>
                 <li>
                   <Tooltip text='Github Username'>
@@ -93,18 +91,11 @@ ReposGrid.propTypes = {
 };
 
 export default class Popular extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedLanguage: 'All',
-      repos: {},
-      error: null
-    };
-
-    this.updateLanguage = this.updateLanguage.bind(this);
-    this.isLoading = this.isLoading.bind(this);
-  }
+  state = {
+    selectedLanguage: 'All',
+    repos: {},
+    error: null
+  };
 
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage);
