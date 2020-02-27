@@ -21,7 +21,8 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
           <button
             className='btn-clear nav-link'
             style={language === selected ? { color: 'rgb(187, 46, 31)' } : null}
-            onClick={() => onUpdateLanguage(language)}>
+            onClick={() => onUpdateLanguage(language)}
+          >
             {language}
           </button>
         </li>
@@ -55,7 +56,8 @@ function ReposGrid({ repos }) {
               header={`#${index + 1}`}
               avatar={avatar_url}
               href={html_url}
-              name={login}>
+              name={login}
+            >
               <ul className='card-list'>
                 <li>
                   <Tooltip text='Github Username'>
@@ -101,9 +103,9 @@ export default class Popular extends React.Component {
     this.updateLanguage(this.state.selectedLanguage);
   }
 
-  updateLanguage(selectedLanguage) {
+  updateLanguage = selectedLanguage => {
     this.setState({
-      selectedLanguage,
+      selectedLanguage: selectedLanguage,
       error: null
     });
 
@@ -125,7 +127,7 @@ export default class Popular extends React.Component {
           });
         });
     }
-  }
+  };
 
   isLoading() {
     const { selectedLanguage, repos, error } = this.state;
